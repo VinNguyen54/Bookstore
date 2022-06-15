@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}{% endblock %} PBook</title>
+        <!-- link css online -->
+        <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+        <!-- CSS links -->
+        <link rel="stylesheet" href="{% static 'css/core.css' %}">
+        {% block css %}{% endblock %}
+
+    </head>
+    <body>
+        <!-- Header section starts -->
+        <header class="header">
+            <div class="header-1">
+                <a href="#" class="logo"><i class="fas fa-book"> PBook</i></a>
+
+                <nav class="navbar">
+                    <a href="{% url 'home' %}">HOME</a>
+                    <a href="#news">SHOP</a>
+                    {% if request.user.is_authenticated %}
+                        <a href="{% url 'vendor_admin' %}">Vendor admin</a>
+                    {% else %}
+                        <a href="{% url 'vendor_login' %}">vendor login</a>
+                    {% endif %}
+                    <a href="{% url 'contact' %}">CONTACT</a>
+
+                </nav>
+
+                <div class="icons">
+                    <a href="#" class="fas fa-shopping-cart"><span>(0)</span></a>
+                    <div class="user-dropdown">
+                        <div id="login-btn" class="fas fa-user"></div>
+                        <div class="dropdown-content">
+                            <a href="#admin" class="fas fa-address-card"> Admin</a>
+                            <a href="#logout" class="fas fa-right-from-bracket"> Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- header section end  -->
+
+        <!-- Bottom navbar -->
+        <nav class="bottom-navbar">
+            <a href="#home" class="fas fa-home"></a>
+            <a href="#home" class="fas fa-list"></a>
+            <a href="#home" class="fas fa-tags"></a>
+            <a href="#home" class="fas fa-blog"></a>
+        </nav>
+        <!-- ********** -->
+
+
+        {% block content %}{% endblock %}
+
+        
+        <!-- JS links -->
+        <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+        <script src="{% static 'js/core.js' %}"></script>
+        {% block js %}{% endblock %}
+    </body>
+
+</html>
