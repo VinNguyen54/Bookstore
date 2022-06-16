@@ -1,5 +1,8 @@
 from django import forms
+from django.forms import ModelForm
 from django.contrib.auth import authenticate
+
+from apps.product.models import Product
 
 class VendorLoginForm(forms.Form):
     username = forms.CharField()
@@ -19,3 +22,9 @@ class VendorLoginForm(forms.Form):
                 raise forms.ValidationError('Incorrect Password')
 
         return super(VendorLoginForm, self).clean(*args, **kwargs)
+
+
+class ProductForm(ModelForm):
+    class Meta:
+        model = Product
+        fields = ['category', 'image', 'name', 'desciption', 'price', 'author', 'page', 'publisher', 'publish_date']
