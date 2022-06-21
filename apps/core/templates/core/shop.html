@@ -1,0 +1,68 @@
+{% extends 'core/core.html' %}
+{% load static %}
+
+{% block title %}Shop |{% endblock %}
+{% block css %} <link rel="stylesheet" href="{% static 'css/shop.css' %}">{% endblock %}
+
+{% block content %}
+<!-- filter  -->
+<div class="wrapper">
+    <form method="get" action=".">
+        <div id="search-container">
+        <input
+            type="search"
+            id="search-input"
+            name="query"
+            placeholder="Search product name here.."
+        />
+        <button id="search">Search</button>
+        </div>
+    </form>
+    <div id="buttons">
+        {% for category in categories %}
+            <button class="button-value{% if active_category == category.slug %} active {% endif %}"><a href="{% url 'shop' %}?category={{ category.slug }}"  class="{% if active_category == category.slug %} active {% endif %}">{{ category.name }}</a></button>
+        {% endfor%}
+    </div>
+</div>
+
+<!-- product -->
+<section id="product" class="product">
+    <h1 class="heading"><span>Product</span></h1>
+    <div class="swiper product-slider">
+        {% for product in page_obj %}
+        <div class="swiper-slide box">
+            <div class="icons">
+                <a href="#" class="fas fa-search"></a>
+                <a href="#" class="fas fa-heart"></a>
+                <a href="{% url 'product' product.slug %}" class="fas fa-eye"></a>
+            </div>
+            <div class="image">
+                <img src="{{ product.get_thumbnail }}" alt="">
+            </div>
+            <div class="content">
+                <h3>{{ product.name }}</h3>
+                <div class="price">{{ product.get_display_price }}00 VND <span>$20.99</span></div>
+                <a href="#" class="btn">Add to cart</a>
+            </div>
+        </div>
+        {% endfor%}
+    </div>
+    <ul class="pagination">
+        {% if page_obj.has_previous %}
+            <li><a href="?page={{page_obj.previous_page_number}}">&lt;</a></li>
+        {% else %}
+            <li><a >&lt;</a></li>
+        {% endif %}
+        
+        <li>Page {{page_obj.number}} of {{page_obj.paginator.num_pages}}</li>
+    
+        {% if page_obj.has_next %}
+            <li><a href="?page={{page_obj.next_page_number}}">&gt;</a></li>
+        {% else %}
+            <li><a href="#0">&gt;</a></li>
+        {% endif %}
+    </ul>
+</section>
+<!-- ********** -->
+
+{% endblock %}

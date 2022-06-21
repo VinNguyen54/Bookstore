@@ -17,7 +17,7 @@
             <div class="swiper books-slider">
                 <div class="swiper-wrapper">
                     {% for product in stand_products %}
-                    <a href="#" class="swiper-slide"><img src="{{ product.get_thumbnail }}" alt=""></a>
+                    <a href="{% url 'product' product.slug %}" class="swiper-slide"><img src="{{ product.get_thumbnail }}" alt=""></a>
                     {% endfor %}
                 </div>
                 <img src="{% static 'img/stand.png' %}" class="stand" alt="">
@@ -35,21 +35,7 @@
             <div class="swiper-wrapper">
                 
                 {% for product in newest_products %}
-                <div class="swiper-slide box">
-                    <div class="icons">
-                        <a href="#" class="fas fa-search"></a>
-                        <a href="#" class="fas fa-heart"></a>
-                        <a href="#" class="fas fa-eye"></a>
-                    </div>
-                    <div class="image">
-                        <img src="{{ product.get_thumbnail }}" alt="">
-                    </div>
-                    <div class="content">
-                        <h3>{{ product.name }}</h3>
-                        <div class="price">{{ product.get_display_price }}00 VND <span></span></div>
-                        <a href="#" class="btn">Add to cart</a>
-                    </div>
-                </div>
+                    {% include 'product/parts/list_item.html' %}
                 {% endfor %}
             </div>
             <div class="swiper-button-next"></div>
