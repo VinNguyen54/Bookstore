@@ -1,4 +1,3 @@
-from itertools import product
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
@@ -25,7 +24,7 @@ def become_vendor(request):
             mygroup = Group.objects.get(name = 'Vendor')
             mygroup.user_set.add(user)
 
-            return redirect('home')
+            return redirect('vendor_admin')
 
     else:
         form = UserCreationForm()
@@ -46,7 +45,12 @@ def vendor_login(request):
 
             login(request, user)
 
-            return redirect('vendor_admin')
+            group = Group(name = 'Vendor')
+
+            if user.groups.filter(name = group):
+                return redirect('vendor_admin')
+            else:
+                return ('vendor_login')
 
     else:
         form = VendorLoginForm()

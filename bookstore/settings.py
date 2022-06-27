@@ -30,6 +30,9 @@ ALLOWED_HOSTS = []
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
+SESSION_COOKIE_AGE = 86400
+CART_SESSION_ID = 'cart'
+
 
 # Application definition
 
@@ -41,7 +44,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+    'apps.cart',
     'apps.core',
+    'apps.customer',
     'apps.vendor',
     'apps.product',
 ]

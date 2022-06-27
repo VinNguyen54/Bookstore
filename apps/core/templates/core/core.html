@@ -37,10 +37,16 @@
                     <a href="#" class="fas fa-shopping-cart"><span>(0)</span></a>
                     <div class="user-dropdown">
                         <div id="login-btn" class="fas fa-user"></div>
+                        {% if request.user.is_authenticated %}
                         <div class="dropdown-content">
                             <a href="#admin" class="fas fa-address-card"> Admin</a>
                             <a href="#logout" class="fas fa-right-from-bracket"> Logout</a>
                         </div>
+                        {% else %}
+                        <div class="dropdown-content">
+                            <a href="{% url 'customer_login' %}" class="fas fa-arrow-right-to-bracket">Login</a>
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
