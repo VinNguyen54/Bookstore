@@ -1,0 +1,57 @@
+{% extends 'core/core.html' %}
+{% load static %}
+ 
+{% block title %}{{ product.name }}{% endblock %}
+{% block css %}<link rel="stylesheet" href="{% static 'css/product.css' %}">{% endblock %}
+
+
+{% block content %}
+    <!-- product content  -->
+    <section class="product-container">
+        <div class="card">
+            <div class="image-card">
+                {% if product.image %}
+                <img src="{{ product.image.url }}">
+                {% endif %}
+            </div>
+
+            <div class="info-card">
+                <p><a href="{% url 'home' %}">Home</a> / <a href="#">category</a> / product name </p>
+                <h1>{{ product.name }}</h1>
+                <h5>by {{ product.author }}</h5>
+                <h2>Product details</h2>
+                <h4>Publisher: {{ product.publisher }} </h4>
+                <h4>Publish day: {{ product.publish_date }}</h4>
+                <h4>Page:  {{ product.page }}</h4>
+                
+                <h4>Price:  {{ product.get_display_price }}00 VND</h4>
+                <input type="number" value="1">
+                <a href="#addtocard" class="btn">Add to Cart</a>
+            </div>
+
+            <div class="overview-card">
+                <h2>Overview</h2>
+                <p>{{ product.desciption }}</p>
+            </div>
+        </div>
+    </section>
+
+    {% if similar_products %}
+    <section id="newproduct" class="newproduct">
+        <h1 class="heading"><span>Similar books</span></h1>
+        <div class="swiper newproduct-slider">
+
+            <div class="swiper-wrapper">
+                {% for product in similar_products %}
+                    {% include 'product/parts/list_item.html' %}
+                {% endfor %}
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </section>
+    {% endif %}
+    
+{% endblock %}
+
+

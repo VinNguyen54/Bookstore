@@ -1,0 +1,65 @@
+/* login form  */
+
+.login-form-container {
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    background     : rgba(255, 255, 255, .9);
+    position       : fixed;
+    top            : 0;
+    left           : 0;
+    z-index        : 10000;
+    height         : 100%;
+    width          : 100%;
+}
+
+.login-form-container form {
+    background   : #fff;
+    border       : var(--border);
+    width        : 40rem;
+    padding      : 2rem;
+    box-shadow   : var(--box-shadow);
+    border-radius: .5rem;
+    margin       : 2rem;
+}
+
+.login-form-container form h3 {
+    font-size     : 2.8rem;
+    text-transform: uppercase;
+    color         : var(--black);
+    text-align    : center;
+}
+
+.login-form-container form span {
+    display  : block;
+    font-size: 2rem;
+    padding  : 1rem;
+}
+
+.login-form-container form .box {
+    width         : 100%;
+    margin        : .7rem 0;
+    font-size     : 2rem;
+    border        : var(--border);
+    border-radius : .5rem;
+    padding       : 1rem 1.2rem;
+    color         : var(--black);
+    text-transform: none;
+}
+
+.login-form-container form .btn {
+    text-align: center;
+    width     : 100%;
+    margin    : 1.5rem 0;
+}
+
+.login-form-container form p {
+    padding-top: .8rem;
+    color      : var(--light-color);
+    font-size  : 1.8rem;
+}
+
+.login-form-container form p a {
+    color          : var(--green);
+    text-decoration: underline;
+}

@@ -1,0 +1,16 @@
+{% extends 'core/core.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Become vendor |{% endblock %}
+
+{% block content %}
+    <h1>Become Vendor</h1>
+    
+    <form method="post" action="." style="font-size: 2rem;">
+        {% csrf_token %}
+
+        {{ form|crispy }}
+
+        <button>Sign up</button>
+    </form>
+{% endblock %}

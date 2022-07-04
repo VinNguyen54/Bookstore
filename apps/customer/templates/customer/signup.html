@@ -1,0 +1,25 @@
+{% extends 'core/core.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Signup |{% endblock %}
+{% block css %}<link rel="stylesheet" href="{% static 'css/login.css' %}">{% endblock %}
+
+{% block content %}
+    <div class="login-form-container">
+
+        <form action="." method="post" >
+            {% csrf_token %}
+            <h3>Signup</h3>
+            <span>Username</span>
+            {{ form.username }}
+            <span>Email</span>
+            {{ form.email }}
+            <span>Password</span>
+            {{ form.password1 }}
+            <span>repassword</span>
+            {{ form.password2 }}
+            <input type="submit" value="signup" class="btn">
+        </form>
+    </div>
+{% endblock %}

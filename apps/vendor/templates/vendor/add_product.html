@@ -1,0 +1,28 @@
+{% extends 'vendor/vendor_header.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Add product{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    <div class="add-product-form">
+        <div class="title">
+            <h3>Add Product</h3>
+        </div>
+
+        <form action="." method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <h3>Add a new product</h3>
+           
+            {{ form|crispy }}
+
+            <input type="submit" name="add_product" class="btn" value="Add product">
+        </form>
+
+     </div>  
+
+
+</div>
+{% endblock %}
